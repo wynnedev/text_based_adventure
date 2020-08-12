@@ -8,26 +8,40 @@
 enum class ITEM_TYPE{ WEAPON, ARMOR, POTION, NONE};
 
 #include <string>
+#include <utility>
+
+struct {
+    std::string itemName;
+    std::string itemDesc;
+    int itemValue;
+    ITEM_TYPE itemType;
+} typedef ItemData;
+
 class Item {
 public:
+    /* Default constructor */
     Item();
-    Item(std::string&, std::string&, int, ITEM_TYPE);
+
+    /* Single Argument Constructor */
+    explicit Item(ItemData*);
+
+    /* Copy Constructor */
     Item(const Item& i);
+
+    /* Equivalency Operator */
     bool operator==(const Item& i);
-    std::string getItemName() const;
-    std::string getItemDesc() const;
-    std::string getItemHash() const;
-    int getItemValue() const;
-    ITEM_TYPE getItemType() const;
-    void generateHash();
+
+    /* Getter Functions */
+    //returns item data struct
+    ItemData* getItemData() const;
 
 private:
-    std::string _itemName;
-    std::string _itemDesc;
+    ///TODO Make Static Function
+    void GenerateHash();
+    ItemData* _itemData;
     std::string _itemHash;
-    int _itemValue;
-    ITEM_TYPE _itemType;
 };
+
 
 
 #endif//TEXT_BASED_ADVENTURE_ITEM_HPP
