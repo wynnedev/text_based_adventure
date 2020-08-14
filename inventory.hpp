@@ -7,24 +7,27 @@
 #ifndef TEXT_BASED_ADVENTURE_INVENTORY_HPP
 #define TEXT_BASED_ADVENTURE_INVENTORY_HPP
 #include <map>
+#include <utility>
 #include "item.hpp"
 
 typedef std::string hashKey;
-typedef
+typedef std::map<hashKey, Item> InventoryMap;
 
 class Inventory {
 public:
     Inventory();
-    Inventory(int);
+    explicit Inventory(int);
     Item GetItem(const Item&);
     void RemoveItem(const Item&);
-    std::map<hashKey, Item>::iterator SearchInventory
+    bool IsEmpty();
 
 /// TODO should I return the item hash for tracking
-    void InsertItem(Item&);
+    void InsertItem(const Item &i);
+
+    void ShowInventory();
 
 private:
-    std::map<hashKey, Item> _inventory;
+    InventoryMap _inventory;
     int _capacity;
 };
 

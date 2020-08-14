@@ -25,3 +25,12 @@ Item::Item(const Item &i) {
     this->_itemHash = i._itemHash;
     this->_itemData = i._itemData;
 }
+
+void Item::ShowItem() const {
+    std::cout << "Name:" << _itemData->itemName << std::endl;
+    std::cout << "Desc:" << _itemData->itemDesc << std::endl;
+    std::cout << "Value:" << _itemData->itemValue << std::endl;
+}
+std::string Item::getItemHash() const {
+    return this->_itemHash;
+}
