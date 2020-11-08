@@ -5,6 +5,10 @@
 
 #define INVENTORY_SIZE 10
 
+///TODO generate inventory from item list
+///TODO Ingestion for rooms and inventories
+///TODO Dungeon Function to validate room assignments
+
 int main() {
     std::cout << "Program Started!" << std::endl;
     std::cout << "Creating Item" << std::endl;
@@ -17,12 +21,10 @@ int main() {
     ItemData axeItemData = CreateItemData("Minor Health Potion", "Healing Potion", 5, ITEM_TYPE::WEAPON);
     Item axeItem = Item(&axeItemData);
     inventory->InsertItem(axeItem);
-    inventory->ShowInventory();
-
     inventory->RemoveItem(swordItem);
-    inventory->ShowInventory();
 
-    Room *room = new Room(inventory, "This is an empty room");
+    std::list<int> roomIds = {1, 2, 3, 4};
+    Room *room = new Room(inventory, "Complete Darkness", "A room full of treasure", "you see a hidden compartment", roomIds);
     room->ShowRoom();
     std::cout << "Program Ended!" << std::endl;
     return 0;

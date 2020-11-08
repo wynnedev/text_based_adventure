@@ -11,15 +11,20 @@ Room::Room(){
     _roomDescription = "";
 }
 
-Room::Room(Inventory* inventory, const std::string& description){
+Room::Room(Inventory* inventory, const std::string& peekDesc, const std::string& roomDesc, const std::string& exploreDesc, const std::list<int>& exitIds){
     _roomID = ++roomID;
     _roomInventory = std::make_unique<Inventory>(*inventory);
-    _roomDescription = description;
+    _peekDescription = peekDesc;
+    _roomDescription = roomDesc;
+    _exploreDescription = exploreDesc;
+    _exits = exitIds;
 }
 
 void Room::ShowRoom() const {
-    std::cout << _roomDescription << std::endl;
-    std::cout << "This room contains the following items: " << std::endl;
-
+    std::cout << "peek description: " << _peekDescription << std::endl;
+    std::cout << "room description: " << _roomDescription << std::endl;
+    std::cout << "explore description: " << _exploreDescription << std::endl;
+    std::cout << "room inventory: " << std::endl;
     this->_roomInventory->ShowInventory();
+    std::cout << "room exits:" << _exits.size() << " exits" << std::endl;
 }
